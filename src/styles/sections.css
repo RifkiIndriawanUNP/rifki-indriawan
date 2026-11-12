@@ -1,0 +1,108 @@
+/* ---------- Hero ---------- */
+.hero { padding: 150px 85px 80px; }
+.hero .hero__photo {
+  position: absolute;
+  top: 40px;
+  right: 85px;
+  width: 99px;
+  height: 110px;
+  aspect-ratio: auto;
+  border-radius: 26px;
+}
+.hero h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; min-height: 1.3em; margin-bottom: 22px; }
+.greeting { display: inline-block; }
+.greeting.is-in { animation: greeting-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.greeting.is-out { opacity: 0; filter: blur(8px); transform: translateY(-10px); transition: opacity 0.38s, filter 0.38s, transform 0.38s; }
+@keyframes greeting-in {
+  from { opacity: 0; filter: blur(8px); transform: translateY(10px); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+.hero p { font-size: 0.98rem; line-height: 1.5; color: var(--ink-2); margin-bottom: 1.05em; }
+.hero p:last-child { margin-bottom: 0; }
+
+.links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; margin-top: 18px; }
+.link a { display: flex; align-items: center; gap: 10px; height: 64px; padding: 0 20px; font-weight: 500; font-size: 0.95rem; }
+
+/* ---------- Projects ---------- */
+.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.project { display: block; padding: 16px 16px 24px; }
+.project h3 { font-size: 1rem; font-weight: 700; margin: 16px 8px 6px; }
+.project h3 span { font-size: 0.8rem; }
+.project p { font-size: 0.8rem; line-height: 1.5; color: var(--ink-2); margin: 0 8px; }
+
+/* ---------- Experience (accordion horizontal) ---------- */
+.accordion {
+  display: grid;
+  gap: 14px;
+  height: 470px;
+  width: 900px;
+  margin-inline: calc(50% - 450px); /* lebih lebar dari kolom, tetap simetris */
+  transition: grid-template-columns 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.panel { overflow: hidden; min-width: 0; cursor: pointer; }
+.panel__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: opacity 0.25s;
+}
+.panel__label span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; }
+.panel__label span:last-child { font-weight: 700; color: var(--ink); }
+
+.panel__body {
+  position: absolute;
+  inset: 0;
+  width: 530px; /* lebar tetap supaya teks tidak reflow saat transisi */
+  padding: 22px 26px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.panel.is-open .panel__label { opacity: 0; }
+.panel.is-open .panel__body { opacity: 1; pointer-events: auto; transition: opacity 0.4s 0.25s; }
+
+.strip { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 8px; margin-bottom: 16px; }
+.strip .media { aspect-ratio: 4 / 3; border-radius: 20px; }
+.panel__body h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+.panel__body small { display: block; font-size: 0.78rem; color: var(--muted); margin: 2px 0 10px; }
+.panel__body p, .panel__body li { font-size: 0.82rem; line-height: 1.5; color: var(--ink-2); }
+.panel__body ul { margin-top: 8px; display: grid; gap: 6px; }
+.panel__body li { position: relative; padding-left: 14px; }
+.panel__body li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
+/* Hilangkan bullet pada subjudul */
+.panel__body li.point-heading {
+  padding-left: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.panel__body li.point-heading::before {
+  display: none;
+  content: none;
+}
+/* ---------- Quote ---------- */
+.quote { padding: 64px 60px; text-align: center; }
+.quote blockquote { font-size: 1.45rem; font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; }
+.quote cite { display: block; margin-top: 22px; font-size: 1.25rem; font-style: normal; font-weight: 400; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .accordion { width: 100%; margin-inline: 0; }
+}
+@media (max-width: 760px) {
+  .hero { padding: 130px 28px 44px; }
+  .hero .hero__photo { right: 28px; }
+  .links { grid-template-columns: repeat(2, 1fr); }
+  .projects { grid-template-columns: 1fr; }
+  .quote { padding: 44px 28px; }
+  .accordion { grid-template-columns: 1fr !important; height: auto; }
+  .panel__label { display: none; }
+  .panel__body { position: relative; inset: auto; width: auto; opacity: 1; pointer-events: auto; }
+}

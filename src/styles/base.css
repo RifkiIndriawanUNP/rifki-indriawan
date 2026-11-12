@@ -1,0 +1,71 @@
+:root {
+  --col: 760px; /* lebar kolom utama */
+  --ink: #14171c;
+  --ink-2: #3a4048;
+  --muted: #6b7280;
+  --blue: #4285f4;
+  --red: #ea4335;
+  --yellow: #fbbc05;
+  --green: #34a853;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: #ffff;
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+ul { list-style: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.koi { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+.koi--soft { filter: blur(2px); }
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(var(--col), calc(100% - 32px));
+  margin: 0 auto;
+  padding: 56px 0 56px;
+}
+.section { scroll-margin-top: 24px; }
+.section + .section { margin-top: 64px; }
+
+h2 { font-size: 2.1rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 18px 6px; }
+
+.media {
+  aspect-ratio: 16 / 10;
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  /*padding: 8px;*/
+  color: var(--muted);
+  font-size: 0.8rem;
+  background: linear-gradient(135deg, #e6eefc, #f4f6fa);
+}
+.media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.footer {
+  position: relative;
+  z-index: 1;
+  width: min(var(--col), calc(100% - 32px));
+  margin: 0 auto;
+  padding: 0 0 44px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .footer { padding-bottom: 110px; }
+}

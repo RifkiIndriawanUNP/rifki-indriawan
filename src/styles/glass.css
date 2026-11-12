@@ -1,0 +1,27 @@
+/* Kartu liquid glass. Refraksi dikerjakan Glass.tsx lewat backdrop-filter (SVG displacement). */
+.glass {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1));
+  border: 1px solid rgba(26, 40, 70, 0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(120, 140, 170, 0.18),
+    inset 0 0 24px rgba(255, 255, 255, 0.45),
+    0 14px 38px rgba(26, 40, 70, 0.1),
+    0 2px 6px rgba(26, 40, 70, 0.06);
+}
+/* kilau di sisi atas */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(120% 70% at 18% 0%, rgba(255, 255, 255, 0.55), transparent 55%);
+  opacity: 0.7;
+  z-index: 0;
+}
+.glass > * { position: relative; z-index: 1; }
+.glass > .glass__defs { position: absolute; width: 0; height: 0; pointer-events: none; }
